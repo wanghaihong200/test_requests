@@ -7,6 +7,7 @@
 @time: 2021/5/4 8:32 下午
 @desc:
 """
+import allure
 import requests
 from jsonpath import jsonpath
 
@@ -22,6 +23,7 @@ class TestWeather:
     def teardown(self):
         pass
 
+    @allure.story("城市查询接口调用")
     def test_weather(self):
         r = requests.request("GET", self.url, headers=self.headers)
         print(r.json())
