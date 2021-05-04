@@ -8,7 +8,7 @@
 @desc:
 """
 import requests
-import pytest
+from jsonpath import jsonpath
 
 
 class TestWeather:
@@ -24,4 +24,5 @@ class TestWeather:
 
     def test_weather(self):
         r = requests.request("GET", self.url, headers=self.headers)
-        print(r.text)
+        print(r.json())
+        assert "上海" in jsonpath(r.json(), "$.result..city")
